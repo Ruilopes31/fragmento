@@ -190,32 +190,44 @@ function revelarComGlitch(elementoHTML) {
     }, 30);
 }
 
-// --- 7. MOTOR DE VIRALIDADE (COMPARTILHAMENTO) ---
-btnShare.addEventListener('click', () => {
+
+// --- 7. MOTOR DE VIRALIDADE (COMPARTILHAMENTO NATIVO/MAGNÉTICO) ---
+btnShare.addEventListener('click', async () => {
     const nivelId = levelDisplay.innerText;
     const erros = 5 - tentativas;
     let quadradinhos = "";
     
-    // Monta os quadradinhos dependendo se ganhou ou perdeu
+    // Monta os quadradinhos
     if (tentativas === 0 && !inputGuess.disabled === false) { 
-        // Se perdeu (0 tentativas)
         quadradinhos = "🟥🟥🟥🟥🟥";
     } else {
-        // Se ganhou (coloca quadrados vermelhos para os erros, um verde para o acerto e pretos para o que sobrou)
         for(let i=0; i < erros; i++) quadradinhos += "🟥";
         quadradinhos += "🟩";
         for(let i=0; i < (4 - erros); i++) quadradinhos += "⬛";
     }
     
-    // O texto que vai para o WhatsApp/Twitter do jogador
-    const textoCompartilhar = `SYS.FRAGMENTO | Arquivo #${nivelId}\nStatus: RESOLVIDO\nOfensiva: 🔥 ${streak}\n${quadradinhos}\n\nJogue em: seujogo.com.br`;
+    // O texto oficial com o seu link real
+    const textoCompartilhar = `SYS.FRAGMENTO | Arquivo #${nivelId}\nStatus: RESOLVIDO\nOfensiva: 🔥 ${streak}\n${quadradinhos}\n\nJogue em: https://ruilopes31.github.io/fragmento`;
     
-    // Copia para a área de transferência
-    navigator.clipboard.writeText(textoCompartilhar).then(() => {
-        const textoOriginal = btnShare.innerText;
-        btnShare.innerText = "CÓDIGO COPIADO! COLE NO WHATSAPP.";
-        setTimeout(() => btnShare.innerText = textoOriginal, 3000);
-    });
+    // A MÁGICA: Verifica se o aparelho suporta o compartilhamento magnético (celulares)
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title: 'SYS.FRAGMENTO',
+                text: textoCompartilhar
+            });
+            // O celular vai abrir a gaveta de apps sozinho!
+        } catch (err) {
+            console.log('Compartilhamento cancelado pelo usuário.');
+        }
+    } else {
+        // PLANO B: Se estiver no PC, apenas copia o texto para a área de transferência
+        navigator.clipboard.writeText(textoCompartilhar).then(() => {
+            const textoOriginal = btnShare.innerText;
+            btnShare.innerText = "CÓDIGO COPIADO! COLE NO WHATSAPP.";
+            setTimeout(() => btnShare.innerText = textoOriginal, 3000);
+        });
+    }
 });
 
 // --- 8. MECÂNICA DE SACRIFÍCIO (AVERSÃO À PERDA) ---
