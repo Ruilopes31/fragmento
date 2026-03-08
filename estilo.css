@@ -1,4 +1,3 @@
-/* Reset básico para tirar margens padrão */
 * {
     margin: 0;
     padding: 0;
@@ -6,115 +5,95 @@
 }
 
 body {
-    background-color: #050505;
-    color: #00ff41; /* Verde clássico de terminal "Matrix" */
+    background-color: #000;
+    color: #00ff41;
     font-family: 'Courier Prime', monospace;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    overflow: hidden;
 }
 
-/* O contêiner principal do jogo */
+/* Efeito de linhas de monitor antigo */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+    pointer-events: none;
+    z-index: 10;
+}
+
+#matrix-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -2;
+    opacity: 0.2;
+}
+
 .container {
     width: 100%;
     max-width: 600px;
-    background-color: #0a0a0a;
-    border: 1px solid #003b00;
+    background-color: rgba(10, 10, 10, 0.9);
+    border: 1px solid #00ff41;
     padding: 30px;
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
 }
 
-/* Cabeçalho */
 header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     border-bottom: 1px dashed #00ff41;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     margin-bottom: 20px;
 }
 
-.streak {
-    font-weight: bold;
-    color: #ffaa00; /* Dourado para o foguinho chamar atenção */
-}
-
-/* Caixa do Documento */
-.document-header {
-    font-size: 0.9em;
-    margin-bottom: 15px;
-    opacity: 0.8;
-}
-
-.alert {
-    color: #ff3333;
-    animation: blink 2s infinite;
-}
-
 .terminal-box {
-    background-color: #001100;
+    background-color: rgba(0, 20, 0, 0.8);
     border: 1px solid #00ff41;
     padding: 20px;
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    min-height: 120px;
 }
 
-/* A CLASSE MÁGICA: O texto censurado */
 .censored {
     background-color: #00ff41;
-    color: #00ff41; /* Letra e fundo da mesma cor = tarja preta (verde no caso) */
-    user-select: none; /* Impede que o espertinho selecione o texto para ler */
+    color: #00ff41;
     transition: all 0.5s ease;
 }
 
-.censored.revealed {
-    background-color: transparent;
-    color: #ffffff; /* Texto fica branco quando revelado para destacar */
-}
-
-/* Área de Input */
-.interaction-area {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-#attempts-display {
-    font-size: 0.9em;
-    opacity: 0.8;
+.revealed {
+    background-color: transparent !important;
+    color: #fff !important;
+    font-weight: bold;
 }
 
 .input-group {
     display: flex;
-    flex-direction: column; /* Coloca um embaixo do outro para não embolar */
-    gap: 10px;
-    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 12px;
 }
 
-#next-level-btn {
-    background-color: #ffaa00;
-    color: #000;
-    width: 100%; /* Ocupa a largura toda para ficar bonito */
-    display: none; 
-}
-
-.prompt-symbol {
-    padding: 10px;
-    font-weight: bold;
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #00ff41;
+    padding: 5px 10px;
 }
 
 input {
-    flex: 1;
     background: transparent;
     border: none;
     color: #00ff41;
     font-family: inherit;
-    font-size: 1em;
     padding: 10px;
     outline: none;
+    flex: 1;
     text-transform: uppercase;
 }
 
@@ -122,75 +101,27 @@ button {
     background-color: #00ff41;
     color: #000;
     border: none;
+    padding: 12px;
     font-family: inherit;
     font-weight: bold;
-    padding: 12px 20px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
-button:hover {
-    background-color: #ffffff;
-}
+button:hover { background-color: #fff; }
 
-#feedback-message {
-    min-height: 20px;
-    text-align: center;
-    font-weight: bold;
-}
-
-/* Animações */
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-}
-
-/* Efeito de "tremida" quando o jogador erra */
-.shake {
-    animation: shake-animation 0.4s;
-}
-
-@keyframes shake-animation {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
-}
-
-
-/* Efeito de linhas de monitor antigo */
-body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.15),
-        rgba(0, 0, 0, 0.15) 1px,
-        transparent 1px,
-        transparent 2px
-    );
-    pointer-events: none; /* Deixa o mouse clicar nas coisas por baixo */
-    z-index: 9999;
-}
-
-
-#matrix-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; /* Joga para o fundo */
-    opacity: 0.15; /* Deixa transparente/suave */
-}
+#next-level-btn { background-color: #ffaa00; display: none; }
+#share-btn { background-color: #0088ff; color: white; display: none; margin-top: 10px; }
 
 @keyframes pulse-red {
-    0% { box-shadow: inset 0 0 50px rgba(255, 0, 0, 0); }
-    50% { box-shadow: inset 0 0 50px rgba(255, 0, 0, 0.4); }
-    100% { box-shadow: inset 0 0 50px rgba(255, 0, 0, 0); }
+    0% { box-shadow: inset 0 0 0px red; border-color: #00ff41; }
+    50% { box-shadow: inset 0 0 40px rgba(255,0,0,0.5); border-color: red; }
+    100% { box-shadow: inset 0 0 0px red; border-color: #00ff41; }
+}
+
+.shake { animation: shake 0.4s; }
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
 }
