@@ -9,16 +9,15 @@
 </head>
 <body>
     <canvas id="matrix-canvas"></canvas>
+
     <div class="container">
         <header>
             <h1>SYS.FRAGMENTO</h1>
             <div class="streak">🔥 <span id="streak-count">0</span></div>
         </header>
 
-        <main>
-           <main>
-            <div class="document-header">
-                <p>STATUS: <span class="alert">ARQUIVO CORROMPIDO</span></p>
+        <main> <div class="document-header">
+                <p class="status-line">STATUS: <span class="alert">ARQUIVO CORROMPIDO</span></p>
                 <p>NÍVEL DE AMEAÇA: ALTO | ARQUIVO: #<span id="level-display">1</span></p>
             </div>
             
@@ -30,18 +29,21 @@
                 <p id="attempts-display">TENTATIVAS RESTANTES: <span id="attempts-count">5</span></p>
                 
                 <div class="input-group">
-                    <button id="sacrifice-btn" style="display: none; background-color: #ff3333; margin-top: 10px; width: 100%; font-size: 0.9em;">⚠️ SACRIFICAR 1 🔥 PARA REVELAR UMA LETRA</button>
-                    <span class="prompt-symbol">></span>
-                    <input type="text" id="guess-input" placeholder="Identifique o alvo..." autocomplete="off">
-                    <button id="submit-btn">EXECUTAR</button>
-                    <button id="next-level-btn" style="display: none; background-color: #ffaa00;">PRÓXIMO ARQUIVO</button>
+                    <button id="sacrifice-btn" style="display: none; background-color: #ff3333; margin-bottom: 10px; width: 100%; font-size: 0.9em;">⚠️ SACRIFICAR 1 🔥 PARA REVELAR UMA LETRA</button>
+                    
+                    <div class="input-wrapper" style="display: flex; align-items: center; width: 100%;">
+                        <span class="prompt-symbol" style="margin-right: 10px;">></span>
+                        <input type="text" id="guess-input" placeholder="Identifique o alvo..." autocomplete="off" style="flex-grow: 1;">
+                    </div>
+
+                    <button id="submit-btn" style="width: 100%; margin-top: 10px;">EXECUTAR</button>
+                    <button id="next-level-btn" style="display: none; background-color: #ffaa00; width: 100%; margin-top: 10px;">PRÓXIMO ARQUIVO</button>
                 </div>
                 
-                <p id="feedback-message"></p>
+                <p id="feedback-message" style="margin-top: 15px; font-weight: bold;"></p>
                 <button id="share-btn" style="display: none; background-color: #0088ff; margin-top: 15px; width: 100%;">📋 COMPARTILHAR RELATÓRIO</button>
             </div>
-        </main>
-        </main>
+        </main> 
     </div>
 
     <script src="script.js"></script>
