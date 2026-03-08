@@ -12,6 +12,56 @@
   {
     "id": 3,
     "alvo": "CLEOPATRA",
-    "texto": "Fui a última governante ativa do Reino [Ptolomaico] do Egito. Falei vários idiomas e tive romances estratégicos com Júlio César e Marco [Antônio]. Diz a lenda que tirei minha própria vida com a picada de uma [serpente]."
+    "texto": "Fui a última governante ativa do Reino [Ptolomaico] do Egito. Falei vários idiomas e tive romances estratégicos com Júlio César e Marco [António]. Diz a lenda que tirei a minha própria vida com a picada de uma [serpente]."
+  },
+  {
+    "id": 4,
+    "alvo": "DA VINCI",
+    "texto": "Fui o grande génio do [Renascimento]. Embora seja mais lembrado pelo sorriso enigmático da [Mona Lisa], também desenhei máquinas voadoras e estudei a anatomia humana em [segredo]."
+  },
+  {
+    "id": 5,
+    "alvo": "JOANA D ARC",
+    "texto": "Aos 17 anos, liderei o exército da [França] após ouvir vozes divinas. Fui crucial na Guerra dos [Cem Anos], mas acabei capturada pelos ingleses e queimada na [fogueira] por heresia."
+  },
+  {
+    "id": 6,
+    "alvo": "MARIE CURIE",
+    "texto": "Fui a primeira pessoa a ganhar dois prémios [Nobel] em áreas diferentes. Descobri os elementos [Polónio] e Rádio, mas a minha pesquisa com [radioatividade] acabou por me custar a vida."
+  },
+  {
+    "id": 7,
+    "alvo": "GENGIS KHAN",
+    "texto": "Unifiquei as tribos nómadas e fundei o temível Império [Mongol]. Os meus exércitos a cavalo conquistaram grande parte da [Ásia]. Até hoje, o local do meu [túmulo] permanece um mistério absoluto."
+  },
+  {
+    "id": 8,
+    "alvo": "JULIO CESAR",
+    "texto": "Fui o ditador que ditou o fim da República de [Roma]. Atravessei o rio [Rubicão] e disse 'A sorte está lançada'. Fui traído e assassinado pelo Senado nos Idos de [Março]."
+  },
+  {
+    "id": 9,
+    "alvo": "NAPOLEAO",
+    "texto": "Coroei-me imperador e quase conquistei toda a Europa. O meu declínio começou com o inverno rigoroso na [Rússia] e terminou definitivamente na Batalha de [Waterloo]. Morri no exílio na Ilha de Santa [Helena]."
+  },
+  {
+    "id": 10,
+    "alvo": "ALEXANDRE",
+    "texto": "Fui rei da [Macedónia] e aluno do grande filósofo [Aristóteles]. Antes dos 30 anos, criei um dos maiores impérios do mundo antigo, derrotando o Império [Persa]. Sou conhecido como 'O Grande'."
+  },
+  {
+    "id": 11,
+    "alvo": "NEWTON",
+    "texto": "Formulei as leis do movimento e a lei da [gravidade] universal, supostamente inspirado por uma [maçã]. Além da física, passei anos a estudar [alquimia] em segredo."
+  },
+  {
+    "id": 12,
+    "alvo": "GALILEU",
+    "texto": "Aperfeiçoei o [telescópio] e observei as luas de Júpiter. Fui julgado pela [Inquisição] por defender que a Terra girava em torno do [Sol], sendo forçado a negar as minhas descobertas."
+  },
+  {
+    "id": 13,
+    "alvo": "EINSTEIN",
+    "texto": "Sou o físico mais famoso do século XX, conhecido pela teoria da [relatividade] e pela equação E=mc². Fugi da Alemanha [nazi] e ajudei a alertar os EUA sobre a bomba [atómica]."
   }
 ]
