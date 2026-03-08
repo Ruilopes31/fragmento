@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "alvo": "ANIBAL",
+    "texto": "Fui um líder militar implacável. Atravessei os [Alpes] com um exército que incluía [elefantes] para destruir Roma. Meu nome é uma lenda, mas acabei derrotado na Batalha de [Zama]."
+  },
+  {
+    "id": 2,
+    "alvo": "SOCRATES",
+    "texto": "Nunca escrevi uma única palavra, mas mudei a [filosofia] para sempre. Fui acusado de corromper a juventude de [Atenas] e fui condenado a morrer bebendo um veneno chamado [cicuta]."
+  },
+  {
+    "id": 3,
+    "alvo": "CLEOPATRA",
+    "texto": "Fui a última governante ativa do Reino [Ptolomaico] do Egito. Falei vários idiomas e tive romances estratégicos com Júlio César e Marco [Antônio]. Diz a lenda que tirei minha própria vida com a picada de uma [serpente]."
+  }
+]

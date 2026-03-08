@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRAGMENTO | Anomalia Histórica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SYS.FRAGMENTO</h1>
+            <div class="streak">🔥 <span id="streak-count">0</span></div>
+        </header>
+
+        <main>
+           <main>
+            <div class="document-header">
+                <p>STATUS: <span class="alert">ARQUIVO CORROMPIDO</span></p>
+                <p>NÍVEL DE AMEAÇA: ALTO | ARQUIVO: #<span id="level-display">1</span></p>
+            </div>
+            
+            <div id="mystery-text" class="terminal-box">
+                Carregando dados do servidor confidencial...
+            </div>
+
+            <div class="interaction-area">
+                <p id="attempts-display">TENTATIVAS RESTANTES: <span id="attempts-count">5</span></p>
+                
+                <div class="input-group">
+                    <button id="sacrifice-btn" style="display: none; background-color: #ff3333; margin-top: 10px; width: 100%; font-size: 0.9em;">⚠️ SACRIFICAR 1 🔥 PARA REVELAR UMA LETRA</button>
+                    <span class="prompt-symbol">></span>
+                    <input type="text" id="guess-input" placeholder="Identifique o alvo..." autocomplete="off">
+                    <button id="submit-btn">EXECUTAR</button>
+                    <button id="next-level-btn" style="display: none; background-color: #ffaa00;">PRÓXIMO ARQUIVO</button>
+                </div>
+                
+                <p id="feedback-message"></p>
+                <button id="share-btn" style="display: none; background-color: #0088ff; margin-top: 15px; width: 100%;">📋 COMPARTILHAR RELATÓRIO</button>
+            </div>
+        </main>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

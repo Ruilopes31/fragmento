@@ -1,0 +1,152 @@
+/* Reset básico para tirar margens padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #050505;
+    color: #00ff41; /* Verde clássico de terminal "Matrix" */
+    font-family: 'Courier Prime', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* O contêiner principal do jogo */
+.container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #0a0a0a;
+    border: 1px solid #003b00;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+}
+
+/* Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #00ff41;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.streak {
+    font-weight: bold;
+    color: #ffaa00; /* Dourado para o foguinho chamar atenção */
+}
+
+/* Caixa do Documento */
+.document-header {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.alert {
+    color: #ff3333;
+    animation: blink 2s infinite;
+}
+
+.terminal-box {
+    background-color: #001100;
+    border: 1px solid #00ff41;
+    padding: 20px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* A CLASSE MÁGICA: O texto censurado */
+.censored {
+    background-color: #00ff41;
+    color: #00ff41; /* Letra e fundo da mesma cor = tarja preta (verde no caso) */
+    user-select: none; /* Impede que o espertinho selecione o texto para ler */
+    transition: all 0.5s ease;
+}
+
+.censored.revealed {
+    background-color: transparent;
+    color: #ffffff; /* Texto fica branco quando revelado para destacar */
+}
+
+/* Área de Input */
+.interaction-area {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#attempts-display {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #00ff41;
+    background-color: #000;
+}
+
+.prompt-symbol {
+    padding: 10px;
+    font-weight: bold;
+}
+
+input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #00ff41;
+    font-family: inherit;
+    font-size: 1em;
+    padding: 10px;
+    outline: none;
+    text-transform: uppercase;
+}
+
+button {
+    background-color: #00ff41;
+    color: #000;
+    border: none;
+    font-family: inherit;
+    font-weight: bold;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #ffffff;
+}
+
+#feedback-message {
+    min-height: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Animações */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Efeito de "tremida" quando o jogador erra */
+.shake {
+    animation: shake-animation 0.4s;
+}
+
+@keyframes shake-animation {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
