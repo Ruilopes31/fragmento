@@ -119,34 +119,47 @@ function revelarComGlitch(el) {
 }
 
 // Eventos
+// --- 6. EVENTOS E COMPARTILHAMENTO ---
 btnSubmit.addEventListener('click', processarChute);
 inputGuess.addEventListener('keypress', e => { if(e.key === 'Enter') processarChute(); });
-btnNextLevel.addEventListener('click', () => { nivelAtualIndex++; carregarNivel(nivelAtualIndex); });
 
-// Matrix Effect
-const canvas = document.getElementById('matrix-canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-const drops = Array(Math.floor(canvas.width/15)).fill(1);
-function drawMatrix() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#0F0"; ctx.font = "15px monospace";
-    drops.forEach((y, i) => {
-        ctx.fillText(Math.floor(Math.random()*2), i*15, y*15);
-        if (y*15 > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-    });
-}
-setInterval(drawMatrix, 50);
+btnNextLevel.addEventListener('click', () => { 
+    nivelAtualIndex++; 
+    carregarNivel(nivelAtualIndex); 
+});
 
-function tocarSom(t) {
-    const ac = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = ac.createOscillator();
-    const g = ac.createGain();
-    osc.connect(g); g.connect(ac.destination);
-    osc.frequency.value = t === 'erro' ? 100 : 400;
-    osc.start(); g.gain.exponentialRampToValueAtTime(0.00001, ac.currentTime + 0.2);
-    osc.stop(ac.currentTime + 0.2);
-}
+// LÓGICA DO BOTÃO COMPARTILHAR
+btnShare.addEventListener('click', () => {
+    const statusAtual = document.querySelector('.status-line').innerText;
+    const msg = `🎮 ${statusAtual}\n🔥 STREAK: ${streak}\n📂 ARQUIVO: #${nivelAtualIndex + 1}\n\nConsegui hackear o sistema! Você consegue superar meu score? 💻⚡`;
 
-iniciarJogo();
+    if (navigator.share) {
+        navigator.share({
+            title: 'SYS.FRAGMENTO | Relatório',
+            text: msg,
+            url: window.location.href
+        }).catch(err => console.log('Erro ao compartilhar', err));
+    } else {
+        // Fallback: Copia para o teclado se não houver suporte nativo
+        navigator.clipboard.writeText(msg).then(() => {
+            const originalMsg = feedbackMsg.innerHTML;
+            feedbackMsg.innerHTML = `<span style="color:#0088ff">📋 RELATÓRIO COPIADO!</span>`;
+            setTimeout(() => { feedbackMsg.innerHTML = originalMsg; }, 2000);
+        });
+    }
+});
+
+// BOTÃO DE SACRIFÍCIO (REVELAR LETRA)
+btnSacrifice.addEventListener('click', () => { 
+    if(streak > 0) { 
+        streak--; 
+        localStorage.setItem('fragmentoStreak', streak); 
+        streakCount.innerText = streak; 
+        letrasReveladas++; 
+        // Preenche o input com o início da resposta correta
+        inputGuess.value = respostaCorreta.substring(0, letrasReveladas);
+        tocarSom('tecla');
+        atualizarRank();
+        if(streak === 0) btnSacrifice.style.display = "none";
+    }
+});
