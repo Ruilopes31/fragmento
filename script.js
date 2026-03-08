@@ -37,7 +37,7 @@ async function iniciarJogo() {
 function carregarNivel(index) {
     // Reseta as variáveis para o novo nível
     letrasReveladas = 0; // Reseta as dicas
-// Mostra o botão de sacrifício apenas se ele tiver streak > 0
+    // Mostra o botão de sacrifício apenas se ele tiver streak > 0
     btnSacrifice.style.display = streak > 0 ? "block" : "none";
     btnShare.style.display = "none";
     tentativas = 5;
@@ -54,7 +54,6 @@ function carregarNivel(index) {
     levelDisplay.innerText = nivel.id;
 
     // A MÁGICA: Transforma [palavra] em <span class="censored">palavra</span>
-    // O /\[(.*?)\]/g é uma Regex que acha tudo entre colchetes
     let textoFormatado = nivel.texto.replace(/\[(.*?)\]/g, '<span class="censored">$1</span>');
     mysteryBox.innerHTML = textoFormatado;
 }
@@ -69,6 +68,7 @@ function processarChute() {
 
     const chute = normalizarTexto(inputGuess.value);
     if (chute === "") {
+        tocarSom('erro'); // Adicionado som de erro se tentar enviar vazio
         darTremidaErro("DIGITE UM NOME.");
         return;
     }
@@ -82,6 +82,7 @@ function processarChute() {
 }
 
 function errarChute() {
+    tocarSom('erro'); // <--- SOM DE ERRO ADICIONADO AQUI
     tentativas--;
     attemptsCount.innerText = tentativas;
     darTremidaErro("ALVO INCORRETO. DESCRIPTOGRAFANDO DADOS...");
@@ -90,7 +91,7 @@ function errarChute() {
     const censuredWords = Array.from(document.querySelectorAll('.censored'));
     const palavraParaRevelar = censuredWords.find(word => !word.classList.contains('revealed'));
     
-    // ATUALIZAÇÃO AQUI: Em vez de só adicionar a classe, chamamos o Glitch!
+    // Revela com Glitch!
     if (palavraParaRevelar) {
         revelarComGlitch(palavraParaRevelar);
     }
@@ -111,6 +112,13 @@ function perderJogo() {
 }
 
 function finalizarRodada(venceu) {
+    // <--- SOM DE SUCESSO OU ERRO DEFINITIVO ADICIONADO AQUI
+    if (venceu) {
+        tocarSom('sucesso');
+    } else {
+        tocarSom('erro');
+    }
+
     btnShare.style.display = "block";
     inputGuess.disabled = true;
     btnSubmit.style.display = "none";
@@ -147,7 +155,14 @@ function darTremidaErro(mensagem) {
 btnSubmit.addEventListener('click', processarChute);
 inputGuess.addEventListener('keypress', (e) => { if (e.key === 'Enter' && !inputGuess.disabled) processarChute(); });
 
+// <--- SOM DE DIGITAÇÃO ADICIONADO AQUI
+inputGuess.addEventListener('input', (e) => {
+    tocarSom('tecla');
+    e.target.value = e.target.value.toUpperCase();
+});
+
 btnNextLevel.addEventListener('click', () => {
+    tocarSom('tecla'); // Toca um click ao passar de nível
     nivelAtualIndex++;
     carregarNivel(nivelAtualIndex);
 });
@@ -159,37 +174,30 @@ iniciarJogo();
 const caracteresGlitch = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*!?;:";
 
 function revelarComGlitch(elementoHTML) {
-    // 1. Salva a palavra original (ex: "elefantes") e revela o fundo
     const palavraOriginal = elementoHTML.innerText;
     elementoHTML.classList.add('revealed');
     
     let iteracao = 0;
     
-    // 2. Inicia um loop rápido (a cada 30 milissegundos)
     const intervaloGlitch = setInterval(() => {
         elementoHTML.innerText = palavraOriginal
             .split("")
             .map((letra, index) => {
-                // Se o índice for menor que a iteração, mostra a letra certa
                 if (index < iteracao) {
                     return palavraOriginal[index];
                 }
-                // Senão, joga um caractere maluco no lugar
                 return caracteresGlitch[Math.floor(Math.random() * caracteresGlitch.length)];
             })
             .join("");
 
-        // 3. Quando revelar toda a palavra, para a animação
         if (iteracao >= palavraOriginal.length) {
             clearInterval(intervaloGlitch);
-            elementoHTML.innerText = palavraOriginal; // Garante que terminou certinho
+            elementoHTML.innerText = palavraOriginal; 
         }
 
-        // Aumentar esse número deixa a revelação mais rápida. Diminuir deixa mais demorada.
         iteracao += 1 / 3; 
     }, 30);
 }
-
 
 // --- 7. MOTOR DE VIRALIDADE (COMPARTILHAMENTO NATIVO/MAGNÉTICO) ---
 btnShare.addEventListener('click', async () => {
@@ -197,7 +205,6 @@ btnShare.addEventListener('click', async () => {
     const erros = 5 - tentativas;
     let quadradinhos = "";
     
-    // Monta os quadradinhos
     if (tentativas === 0 && !inputGuess.disabled === false) { 
         quadradinhos = "🟥🟥🟥🟥🟥";
     } else {
@@ -206,22 +213,18 @@ btnShare.addEventListener('click', async () => {
         for(let i=0; i < (4 - erros); i++) quadradinhos += "⬛";
     }
     
-    // O texto oficial com o seu link real
     const textoCompartilhar = `SYS.FRAGMENTO | Arquivo #${nivelId}\nStatus: RESOLVIDO\nOfensiva: 🔥 ${streak}\n${quadradinhos}\n\nJogue em: https://ruilopes31.github.io/fragmento`;
     
-    // A MÁGICA: Verifica se o aparelho suporta o compartilhamento magnético (celulares)
     if (navigator.share) {
         try {
             await navigator.share({
                 title: 'SYS.FRAGMENTO',
                 text: textoCompartilhar
             });
-            // O celular vai abrir a gaveta de apps sozinho!
         } catch (err) {
             console.log('Compartilhamento cancelado pelo usuário.');
         }
     } else {
-        // PLANO B: Se estiver no PC, apenas copia o texto para a área de transferência
         navigator.clipboard.writeText(textoCompartilhar).then(() => {
             const textoOriginal = btnShare.innerText;
             btnShare.innerText = "CÓDIGO COPIADO! COLE NO WHATSAPP.";
@@ -233,23 +236,61 @@ btnShare.addEventListener('click', async () => {
 // --- 8. MECÂNICA DE SACRIFÍCIO (AVERSÃO À PERDA) ---
 btnSacrifice.addEventListener('click', () => {
     if (streak > 0) {
-        // Cobra o preço (Tira 1 ponto de ofensiva)
+        tocarSom('tecla'); // Toca som ao sacrificar
         streak--;
         localStorage.setItem('fragmentoStreak', streak);
         streakCount.innerText = streak;
         
-        // Pega a próxima letra do alvo
         letrasReveladas++;
         const dica = respostaCorreta.substring(0, letrasReveladas);
         
-        // Coloca a dica direto na caixa de texto
         inputGuess.value = dica;
         
         darTremidaErro(`DICA COMPRADA: O ALVO COMEÇA COM "${dica}". FOGUINHO CONSUMIDO.`);
         
-        // Se o foguinho zerou, esconde o botão de sacrifício
         if (streak === 0) {
             btnSacrifice.style.display = "none";
         }
     }
 });
+
+// --- 9. MOTOR DE ÁUDIO (SINTETIZADOR RETRO) ---
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function tocarSom(tipo) {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    
+    const agora = audioCtx.currentTime;
+    
+    if (tipo === 'tecla') {
+        oscillator.type = 'square';
+        oscillator.frequency.setValueAtTime(150, agora);
+        gainNode.gain.setValueAtTime(0.1, agora);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, agora + 0.05);
+        oscillator.start(agora);
+        oscillator.stop(agora + 0.05);
+        
+    } else if (tipo === 'erro') {
+        oscillator.type = 'sawtooth';
+        oscillator.frequency.setValueAtTime(100, agora);
+        gainNode.gain.setValueAtTime(0.3, agora);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, agora + 0.3);
+        oscillator.start(agora);
+        oscillator.stop(agora + 0.3);
+        
+    } else if (tipo === 'sucesso') {
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(600, agora);
+        oscillator.frequency.setValueAtTime(900, agora + 0.1);
+        gainNode.gain.setValueAtTime(0.2, agora);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, agora + 0.3);
+        oscillator.start(agora);
+        oscillator.stop(agora + 0.3);
+    }
+}
