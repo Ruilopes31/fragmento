@@ -1,67 +1,67 @@
 [
   {
     "id": 1,
-    "alvo": "ANIBAL",
-    "texto": "Fui um líder militar implacável. Atravessei os [Alpes] com um exército que incluía [elefantes] para destruir Roma. Meu nome é uma lenda, mas acabei derrotado na Batalha de [Zama]."
+    "alvo": "EINSTEIN",
+    "texto": "Sou o físico mais famoso do século XX. Minha teoria da [relatividade] e a equação E=mc² mudaram o mundo. Além da minha genialidade, fiquei famoso pelo meu [cabelo] bagunçado."
   },
   {
     "id": 2,
-    "alvo": "SOCRATES",
-    "texto": "Nunca escrevi uma única palavra, mas mudei a [filosofia] para sempre. Fui acusado de corromper a juventude de [Atenas] e fui condenado a morrer bebendo um veneno chamado [cicuta]."
+    "alvo": "DA VINCI",
+    "texto": "Fui o grande gênio do [Renascimento]. Embora eu seja mais lembrado pelo sorriso enigmático do quadro da [Mona Lisa], também projetei máquinas voadoras séculos antes do avião."
   },
   {
     "id": 3,
     "alvo": "CLEOPATRA",
-    "texto": "Fui a última governante ativa do Reino [Ptolomaico] do Egito. Falei vários idiomas e tive romances estratégicos com Júlio César e Marco [António]. Diz a lenda que tirei a minha própria vida com a picada de uma [serpente]."
+    "texto": "Fui a última grande governante do [Egito] antigo. Falei vários idiomas e tive romances estratégicos com imperadores de Roma. Diz a lenda que tirei minha própria vida com a picada de uma [serpente]."
   },
   {
     "id": 4,
-    "alvo": "DA VINCI",
-    "texto": "Fui o grande génio do [Renascimento]. Embora seja mais lembrado pelo sorriso enigmático da [Mona Lisa], também desenhei máquinas voadoras e estudei a anatomia humana em [segredo]."
+    "alvo": "NAPOLEAO",
+    "texto": "Fui um militar de baixa estatura, mas coroei-me imperador da [França] e quase conquistei toda a Europa. Fui derrotado definitivamente na famosa Batalha de [Waterloo]."
   },
   {
     "id": 5,
-    "alvo": "JOANA D ARC",
-    "texto": "Aos 17 anos, liderei o exército da [França] após ouvir vozes divinas. Fui crucial na Guerra dos [Cem Anos], mas acabei capturada pelos ingleses e queimada na [fogueira] por heresia."
+    "alvo": "GALILEU",
+    "texto": "Aperfeiçoei o [telescópio] e fui o primeiro a observar as luas de Júpiter. Fui julgado e condenado pela Inquisição por defender que a Terra girava em torno do [Sol]."
   },
   {
     "id": 6,
     "alvo": "MARIE CURIE",
-    "texto": "Fui a primeira pessoa a ganhar dois prémios [Nobel] em áreas diferentes. Descobri os elementos [Polónio] e Rádio, mas a minha pesquisa com [radioatividade] acabou por me custar a vida."
+    "texto": "Fui a primeira mulher a ganhar um Prêmio [Nobel], e a única pessoa a ganhar em duas áreas diferentes (Física e Química). Descobri a [radioatividade], o que acabou me custando a vida."
   },
   {
     "id": 7,
-    "alvo": "GENGIS KHAN",
-    "texto": "Unifiquei as tribos nómadas e fundei o temível Império [Mongol]. Os meus exércitos a cavalo conquistaram grande parte da [Ásia]. Até hoje, o local do meu [túmulo] permanece um mistério absoluto."
+    "alvo": "JOANA D ARC",
+    "texto": "Liderei o exército da França com apenas 17 anos após ouvir vozes [divinas]. Fui uma guerreira implacável, mas acabei capturada pelos ingleses e queimada na [fogueira]."
   },
   {
     "id": 8,
-    "alvo": "JULIO CESAR",
-    "texto": "Fui o ditador que ditou o fim da República de [Roma]. Atravessei o rio [Rubicão] e disse 'A sorte está lançada'. Fui traído e assassinado pelo Senado nos Idos de [Março]."
+    "alvo": "TURING",
+    "texto": "Sou considerado o pai da [computação]. Durante a Segunda Guerra Mundial, ajudei a derrotar os nazistas quebrando os códigos da máquina [Enigma]. O símbolo de uma [maçã] mordida é frequentemente associado a mim."
   },
   {
     "id": 9,
-    "alvo": "NAPOLEAO",
-    "texto": "Coroei-me imperador e quase conquistei toda a Europa. O meu declínio começou com o inverno rigoroso na [Rússia] e terminou definitivamente na Batalha de [Waterloo]. Morri no exílio na Ilha de Santa [Helena]."
+    "alvo": "TESLA",
+    "texto": "Fui o mestre da eletricidade e da corrente [alternada]. Inventei a bobina que leva meu nome e tive uma rivalidade histórica e amarga com o inventor Thomas [Edison]."
   },
   {
     "id": 10,
-    "alvo": "ALEXANDRE",
-    "texto": "Fui rei da [Macedónia] e aluno do grande filósofo [Aristóteles]. Antes dos 30 anos, criei um dos maiores impérios do mundo antigo, derrotando o Império [Persa]. Sou conhecido como 'O Grande'."
+    "alvo": "ADA LOVELACE",
+    "texto": "Sou reconhecida como a primeira [programadora] da história da humanidade. No século XIX, escrevi o primeiro [algoritmo] para ser processado por uma máquina, muito antes dos computadores modernos existirem."
   },
   {
     "id": 11,
-    "alvo": "NEWTON",
-    "texto": "Formulei as leis do movimento e a lei da [gravidade] universal, supostamente inspirado por uma [maçã]. Além da física, passei anos a estudar [alquimia] em segredo."
+    "alvo": "ANIBAL",
+    "texto": "Fui um líder militar implacável da cidade de Cartago. Realizei o impossível ao atravessar os [Alpes] cobertos de neve com um exército que incluía dezenas de [elefantes] de guerra para atacar Roma."
   },
   {
     "id": 12,
-    "alvo": "GALILEU",
-    "texto": "Aperfeiçoei o [telescópio] e observei as luas de Júpiter. Fui julgado pela [Inquisição] por defender que a Terra girava em torno do [Sol], sendo forçado a negar as minhas descobertas."
+    "alvo": "SUN TZU",
+    "texto": "Fui um antigo general e filósofo chinês. Escrevi o livro A Arte da [Guerra]. Um dos meus maiores ensinamentos é que o líder supremo é aquele que vence o inimigo sem precisar entrar em [combate]."
   },
   {
     "id": 13,
-    "alvo": "EINSTEIN",
-    "texto": "Sou o físico mais famoso do século XX, conhecido pela teoria da [relatividade] e pela equação E=mc². Fugi da Alemanha [nazi] e ajudei a alertar os EUA sobre a bomba [atómica]."
+    "alvo": "GENGIS KHAN",
+    "texto": "Unifiquei as tribos nômades e fundei o maior império de terras contíguas da história: o Império [Mongol]. Meus exércitos a cavalo aterrorizaram o mundo. Até hoje, o local do meu [túmulo] permanece um mistério absoluto."
   }
 ]

@@ -67,9 +67,19 @@ function processarChute() {
     if (tentativas <= 0) return;
 
     const chute = normalizarTexto(inputGuess.value);
+    
     if (chute === "") {
-        tocarSom('erro'); // Adicionado som de erro se tentar enviar vazio
+        tocarSom('erro');
         darTremidaErro("DIGITE UM NOME.");
+        return;
+    }
+
+    // 🔥 O EASTER EGG (CÓDIGO SECRETO) 🔥
+    if (chute === "ILLUMINATI") {
+        tocarSom('sucesso');
+        document.body.style.backgroundColor = "#2b0000"; // Deixa a tela vermelha escura
+        darTremidaErro("VOCÊ ESTÁ SENDO OBSERVADO...");
+        inputGuess.value = "";
         return;
     }
 
@@ -80,7 +90,6 @@ function processarChute() {
     }
     inputGuess.value = "";
 }
-
 function errarChute() {
     tocarSom('erro'); // <--- SOM DE ERRO ADICIONADO AQUI
     tentativas--;

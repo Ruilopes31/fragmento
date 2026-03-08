@@ -150,3 +150,23 @@ button:hover {
     75% { transform: translateX(-5px); }
     100% { transform: translateX(0); }
 }
+
+
+/* Efeito de linhas de monitor antigo */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none; /* Deixa o mouse clicar nas coisas por baixo */
+    z-index: 9999;
+}
