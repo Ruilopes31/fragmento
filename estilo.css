@@ -170,3 +170,14 @@ body::after {
     pointer-events: none; /* Deixa o mouse clicar nas coisas por baixo */
     z-index: 9999;
 }
+
+
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Joga para o fundo */
+    opacity: 0.15; /* Deixa transparente/suave */
+}

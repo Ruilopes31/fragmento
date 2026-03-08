@@ -303,3 +303,45 @@ function tocarSom(tipo) {
         oscillator.stop(agora + 0.3);
     }
 }
+
+
+// --- 10. EFEITO MATRIX NO FUNDO ---
+const canvas = document.getElementById('matrix-canvas');
+const ctx = canvas.getContext('2d');
+
+// Faz o canvas ocupar a tela toda
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*".split("");
+const tamanhoFonte = 16;
+const colunas = canvas.width / tamanhoFonte;
+
+// Um array que guarda a posição Y de cada gota de código
+const gotas = [];
+for (let x = 0; x < colunas; x++) gotas[x] = 1;
+
+function desenharMatrix() {
+    // Pinta um fundo preto semi-transparente para dar o rastro
+    ctx.fillStyle = "rgba(10, 10, 10, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff41"; // Verde hacker
+    ctx.font = tamanhoFonte + "px monospace";
+
+    for (let i = 0; i < gotas.length; i++) {
+        // Pega uma letra aleatória
+        const texto = letras[Math.floor(Math.random() * letras.length)];
+        
+        // Desenha a letra na tela
+        ctx.fillText(texto, i * tamanhoFonte, gotas[i] * tamanhoFonte);
+
+        // Se a gota chegou no fundo da tela (e um fator aleatório), volta pro topo
+        if (gotas[i] * tamanhoFonte > canvas.height && Math.random() > 0.975) {
+            gotas[i] = 0;
+        }
+        gotas[i]++; // Move a gota para baixo
+    }
+}
+// Roda a animação a cada 50 milissegundos
+setInterval(desenharMatrix, 50);
